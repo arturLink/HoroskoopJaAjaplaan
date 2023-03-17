@@ -29,8 +29,20 @@ namespace HoroskoopJaAjaplaan
                 BackgroundColor = Color.White,
                 TextColor = Color.Black
             };
+            dtpicker.DateSelected += Dtpicker_DateSelected;
             st.Children.Add(dtpicker);
             
+        }
+
+        private void Dtpicker_DateSelected(object sender, DateChangedEventArgs e)
+        {
+            var month = e.NewDate.Month;
+            var day = e.NewDate.Month;
+            string[] zodiacSigns = {"Kaljukits", "Veevalaja", "Kalad", "Jäär", "Sõnn", "Kaksikud",
+                            "Vähk", "Lõvi", "Neitsi", "Kaalud", "Skorpion", "Ambur"};
+            int[] cutoffDays = { 20, 19, 20, 20, 21, 21, 22, 23, 23, 23, 22, 21 };
+            int index = (day <= cutoffDays[month - 1]) ? month - 1 : (month + 10) % 12;
+
         }
     }
 }
